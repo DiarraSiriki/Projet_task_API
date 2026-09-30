@@ -1,0 +1,16 @@
+info:
+  name: updateCompleted
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: "{{base_url}}/tasks/{{taskId}}/completed"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

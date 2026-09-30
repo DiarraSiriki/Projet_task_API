@@ -1,0 +1,8 @@
+name: local
+variables:
+  - name: userId
+    value: k9hDQgUmuJToBlPSWSavOuet38Ue40gR
+  - name: taskId
+    value: 01c61428-2bad-433b-a662-c1e9d92775a6
+  - name: token
+    value: 01c61428-2bad-433b-a662-c1e9d92775a6
