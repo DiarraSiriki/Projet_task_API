@@ -5,8 +5,15 @@ info:
 
 http:
   method: POST
-  url: "{{base_url}}/api/sign-in/email"
+  url: "{{base_url}}/api/auth/sign-in/email"
   auth: inherit
+  body:
+    mimeType: application/json
+    text: |-
+      {
+        "email": "test@example.com",
+        "password": "password123"
+      }
 
 settings:
   encodeUrl: true

@@ -1,5 +1,7 @@
 name: local
 variables:
+  - name: base_url
+    value: http://localhost:3000
   - name: userId
     value: k9hDQgUmuJToBlPSWSavOuet38Ue40gR
   - name: taskId

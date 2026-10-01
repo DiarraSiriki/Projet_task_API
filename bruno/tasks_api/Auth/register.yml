@@ -7,6 +7,14 @@ http:
   method: POST
   url: "{{base_url}}/api/auth/sign-up/email"
   auth: inherit
+  body:
+    mimeType: application/json
+    text: |-
+      {
+        "email": "test@example.com",
+        "password": "password123",
+        "name": "Test User"
+      }
 
 settings:
   encodeUrl: true
