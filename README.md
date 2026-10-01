@@ -1,118 +1,275 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NexaFood API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Une API RESTful moderne construite avec NestJS pour la gestion de tâches avec authentification utilisateur.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Caractéristiques
 
-## Description
+- **Architecture modulaire** basée sur NestJS
+- **Authentification** avec Better Auth (sessions sécurisées)
+- **Base de données** PostgreSQL avec Prisma ORM
+- **Validation** des données avec Zod
+- **Documentation API** avec Swagger/OpenAPI
+- **Sécurité** avec Helmet, Throttling et Guards
+- **Logging** structuré avec Pino
+- **Health checks** avec Terminus
+- **Tests** avec Vitest
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🛠️ Stack Technique
 
-## Project setup
+- **Framework**: NestJS 11.2.5
+- **Runtime**: Node.js >=22.12 avec Bun
+- **Langage**: TypeScript 5.9.3
+- **Base de données**: PostgreSQL avec Prisma 7
+- **Authentification**: Better Auth 1.6.26
+- **Validation**: Zod 4.4.3
+- **Logging**: Pino 10.3.1
+- **Testing**: Vitest 4.1.10
+- **Code Quality**: Biome 2.5.7, Lefthook 2.1.10
 
+## 📋 Prérequis
+
+- Node.js >=22.12
+- Bun 1.2.14
+- PostgreSQL (local ou cloud)
+
+## 🔧 Installation
+
+1. **Cloner le projet**
 ```bash
-$ bun install
+git clone <repository-url>
+cd Projet_task_API
 ```
 
-## Compile and run the project
-
+2. **Installer les dépendances**
 ```bash
-# development
-$ bun run start
-
-# watch mode
-$ bun run start:dev
-
-# production mode
-$ bun run start:prod
+bun install
 ```
 
-## Run tests
-
+3. **Configurer les variables d'environnement**
 ```bash
-# unit tests
-$ bun run test
-
-# e2e tests
-$ bun run test:e2e
-
-# test coverage
-$ bun run test:cov
+cp .env.example .env
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ bun install -g @nestjs/mau
-$ mau deploy
+Éditez le fichier `.env` avec vos configurations:
+```env
+NODE_ENV=development
+PORT=3000
+DATABASE_URL=postgresql://user:password@localhost:5432/nexafood
+BETTER_AUTH_SECRET=votre_secret_minimum_16_caracteres
+BETTER_AUTH_URL=http://localhost:3000
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+4. **Initialiser la base de données**
+```bash
+# Générer le client Prisma
+bun run db:generate
 
-## Observability
+# Pousser le schéma vers la base de données
+bun run db:push
+```
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+## 🚀 Démarrage
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+### Mode développement
+```bash
+bun run dev
+```
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
+### Mode production
+```bash
+# Build
+bun run build
 
-This project is already instrumented. Create a free account at [observe.nestjs.com](https://observe.nestjs.com), add an application, and paste the generated app key and secret into the `ObserveModule.forRoot()` call in `src/app.module.ts`.
+# Démarrer
+bun run start
+```
 
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
+### Mode debug
+```bash
+bun run dev:debug
+```
 
-## Resources
+## 📚 Documentation API
 
-Check out a few resources that may come in handy when working with NestJS:
+L'API documentation est disponible via Swagger UI:
+- **URL**: http://localhost:3000/docs
+- **Format**: OpenAPI 3.0
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observe](https://observe.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Endpoints Principaux
 
-## Support
+#### Authentification (`/api/auth/*`)
+- `POST /api/auth/sign-up` - Inscription
+- `POST /api/auth/sign-in` - Connexion
+- `POST /api/auth/sign-out` - Déconnexion
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Tâches (`/tasks/*`)
+- `GET /tasks` - Lister les tâches de l'utilisateur (authentifié)
+- `GET /tasks/:id` - Récupérer une tâche spécifique
+- `POST /tasks` - Créer une nouvelle tâche
+- `PATCH /tasks/:id` - Mettre à jour une tâche
+- `PATCH /tasks/:id/completed` - Marquer comme terminée
+- `DELETE /tasks/:id` - Supprimer une tâche
 
-## Stay in touch
+#### Exemples (`/examples/*`)
+- `GET /examples` - Lister les exemples
+- `GET /examples/:id` - Récupérer un exemple
+- `POST /examples` - Créer un exemple
+- `PATCH /examples/:id` - Mettre à jour un exemple
+- `DELETE /examples/:id` - Supprimer un exemple
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## 🧪 Tests
 
-## License
+### Tests unitaires
+```bash
+bun run test
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Tests en mode watch
+```bash
+bun run test:watch
+```
+
+### Tests avec couverture
+```bash
+bun run test:cov
+```
+
+### Tests E2E
+```bash
+bun run test:e2e
+```
+
+## 🗄️ Base de Données
+
+### Commandes Prisma
+```bash
+# Générer le client
+bun run db:generate
+
+# Pousser le schéma (development)
+bun run db:push
+
+# Créer une migration
+bun run db:migrate
+
+# Déployer les migrations (production)
+bun run db:deploy
+
+# Ouvrir Prisma Studio
+bun run db:studio
+```
+
+### Schéma Actuel
+- **User**: Utilisateurs avec authentification
+- **Task**: Tâches avec priorités (LOW, MEDIUM, HIGH)
+- **Session**: Sessions utilisateur
+- **Account**: Comptes liés (OAuth)
+- **Verification**: Jetons de vérification
+
+## 🔒 Sécurité
+
+- **Helmet**: Protection des headers HTTP
+- **Throttling**: Limite de 20 requêtes par minute par IP
+- **Session Guards**: Protection des routes sensibles
+- **Zod Validation**: Validation stricte des entrées
+- **CORS**: Configuration recommandée pour production
+
+## 📊 Observabilité
+
+### Logging
+- Logs structurés avec Pino
+- Format lisible en développement (pino-pretty)
+- Logs JSON en production
+
+### Health Checks
+Endpoint disponible via Terminus (à configurer selon vos besoins)
+
+## 🏗️ Structure du Projet
+
+```
+src/
+├── auth/              # Module d'authentification
+├── common/            # Utilitaires partagés
+│   ├── dto/          # Data Transfer Objects
+│   ├── filters/      # Filtres d'exceptions
+│   ├── guards/       # Guards de sécurité
+│   └── interceptors/ # Interceptors
+├── config/           # Configuration
+├── modules/          # Modules fonctionnels
+│   ├── example/     # Module exemple
+│   └── tasks/       # Module de tâches
+├── prisma/           # Service Prisma
+├── app.controller.ts # Contrôleur racine
+├── app.module.ts     # Module racine
+├── app.service.ts    # Service racine
+└── main.ts           # Point d'entrée
+```
+
+## 🔧 Configuration de Développement
+
+### Linting
+```bash
+# Vérifier le code
+bun run check
+
+# Corriger automatiquement
+bun run check:fix
+```
+
+### Type Checking
+```bash
+bun run check-types
+```
+
+## 🚢 Déploiement
+
+### Build
+```bash
+bun run build
+```
+
+### Variables d'environnement en production
+```env
+NODE_ENV=production
+PORT=3000
+DATABASE_URL=postgresql://...
+BETTER_AUTH_SECRET=<strong-secret>
+BETTER_AUTH_URL=https://your-domain.com
+```
+
+### Recommandations
+- Utiliser HTTPS en production
+- Configurer les variables CORS appropriées
+- Utiliser un pool de connexions Prisma optimisé
+- Configurer un reverse proxy (Nginx, etc.)
+- Mettre en place des logs centralisés
+
+## 🐛 Dépannage
+
+### Port déjà utilisé
+```bash
+# Sur Windows
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+```
+
+### Erreur de connexion à la base de données
+- Vérifiez que PostgreSQL est en cours d'exécution
+- Vérifiez la chaîne de connexion DATABASE_URL
+- Assurez-vous que la base de données existe
+
+### Erreur d'authentification
+- Vérifiez que BETTER_AUTH_SECRET a au moins 16 caractères
+- Vérifiez que BETTER_AUTH_URL correspond à votre domaine
+
+## 📝 License
+
+UNLICENSED
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues! Veuillez suivre les lignes directrices du projet.
+
+## 📞 Support
+
+Pour toute question ou problème, n'hésitez pas à ouvrir une issue sur le repository.
