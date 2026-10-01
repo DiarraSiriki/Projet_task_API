@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { ApiTags } from '@nestjs/swagger';
 import type { CreateExampleDto } from './dto/create-example.dto.js';
 import type { UpdateExampleDto } from './dto/update-example.dto.js';
-import type { ExampleService } from './example.service.js';
+import { ExampleService } from './example.service.js';
 
 @ApiTags('example')
 @Controller('examples')
