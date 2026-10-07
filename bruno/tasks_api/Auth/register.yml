@@ -6,15 +6,39 @@ info:
 http:
   method: POST
   url: "{{base_url}}/api/auth/sign-up/email"
-  auth: inherit
+  headers:
+    - name: Origin
+      value: http://localhost:3000
   body:
-    mimeType: application/json
-    text: |-
+    type: json
+    data: |-
       {
-        "email": "test@example.com",
-        "password": "password123",
-        "name": "Test User"
+        "email": "Dago@test.com",
+        "password": "Motdepasse123",
+        "name": "Junior"
       }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        bru.setEnvVar("token", res.getBody().token);
+        bru.setEnvVar("userId", res.getBody().user.id);
+    - type: tests
+      code: |-
+        test("statut 200", function () {
+          expect(res.getStatus()).to.equal(200);
+        });
+
+        test("token présent", function () {
+          expect(res.getBody().token).to.be.a("string");
+        });
+
+        test("email correspond à la requête", function () {
+          const requestBody = req.getBody();
+          expect(res.getBody().user.email).to.equal(requestBody.email.toLowerCase());
+        });
 
 settings:
   encodeUrl: true

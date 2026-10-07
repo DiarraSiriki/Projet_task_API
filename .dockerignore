@@ -1,0 +1,66 @@
+# Dépendances
+node_modules
+npm-debug.log
+bun.lockb
+
+# Build
+dist
+build
+*.tsbuildinfo
+
+# Tests
+coverage
+.nyc_output
+*.test.ts
+*.spec.ts
+vitest.config.ts
+vitest.config.e2e.ts
+
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+pino-pretty.log
+
+# Prisma
+prisma/migrations
+
+# Outils de développement
+.lefthook
+.biome
+biome.json
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Documentation
+README.md
+*.md
+docs
+
+# Misc
+.cache
+.temp
+tmp

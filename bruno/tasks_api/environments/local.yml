@@ -3,8 +3,8 @@ variables:
   - name: base_url
     value: http://localhost:3000
   - name: userId
-    value: k9hDQgUmuJToBlPSWSavOuet38Ue40gR
+    value: 8FIiM4zzB2fkWxBgAsRrYkXsiXzpXXnF
   - name: taskId
-    value: 01c61428-2bad-433b-a662-c1e9d92775a6
+    value: ""
   - name: token
-    value: 01c61428-2bad-433b-a662-c1e9d92775a6
+    value: lStSAnqIkjH8Mb1jTGx7F0Dzeu78LlLJ

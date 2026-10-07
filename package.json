@@ -26,9 +26,9 @@
 		"db:deploy": "prisma migrate deploy",
 		"db:studio": "prisma studio",
 		"auth:generate": "better-auth generate --config src/auth/auth.cli.ts --output prisma/schema.prisma",
-		"prepare": "lefthook install",
+		"prepare": "lefthook install || exit 0",
 		"dev:debug": "nest start --debug --watch --preserveWatchOutput",
-		"postinstall": "prisma skills sync || exit 0"
+		"postinstall": "prisma generate || exit 0"
 	},
 	"dependencies": {
 		"@nestjs/common": "11.2.5",
@@ -38,7 +38,7 @@
 		"@nestjs/swagger": "^11.4.6",
 		"@nestjs/terminus": "^11.1.1",
 		"@nestjs/throttler": "^6.5.0",
-		"@prisma/adapter-pg": "^7.9.1",
+		"@prisma/adapter-pg": "^7.0.0",
 		"@prisma/client": "7",
 		"@swc/helpers": "^0.5.23",
 		"@thallesp/nestjs-better-auth": "^2.7.0",
