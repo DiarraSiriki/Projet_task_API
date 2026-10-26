@@ -5,6 +5,7 @@
 
 # TypeScript build cache
 *.tsbuildinfo
+.tsbuildinfo
 
 # Logs
 logs
@@ -14,13 +15,16 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+bun-debug.log*
 
 # OS
 .DS_Store
+Thumbs.db
 
 # Tests
 /coverage
 /.nyc_output
+/test-results
 
 # IDEs and editors
 /.idea
@@ -35,11 +39,22 @@ lerna-debug.log*
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
+!.vscode/tasks
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/extensions
+!.vscode/snippets
+
+# IDE - Cursor
+.cursor/*
+
+# IDE - Windsurf
+.windsurf/*
 
 # dotenv environment variable files
 .env
+.env.*
+!.env.example
 .env.development.local
 .env.test.local
 .env.production.local
@@ -58,4 +73,9 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+# Prisma
 /src/generated/prisma
+/prisma/migrations
+
+# Bun
+bun.lockb
